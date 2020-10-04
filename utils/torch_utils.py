@@ -43,12 +43,9 @@ def select_device(device='', batch_size=None):
         for i in range(0, ng):
             if i == 1:
                 s = ' ' * len(s)
-            logger.info("%sdevice%g _CudaDeviceProperties(name='%s', total_memory=%dMB)" %
-                        (s, i, x[i].name, x[i].total_memory / c))
-    else:
-        logger.info('Using CPU')
+            # logger.info("%sdevice%g _CudaDeviceProperties(name='%s', total_memory=%dMB)" %
+            #             (s, i, x[i].name, x[i].total_memory / c))
 
-    logger.info('')  # skip a line
     return torch.device('cuda:0' if cuda else 'cpu')
 
 
@@ -229,3 +226,4 @@ class ModelEMA:
     def update_attr(self, model, include=(), exclude=('process_group', 'reducer')):
         # Update EMA attributes
         copy_attr(self.ema, model, include, exclude)
+
